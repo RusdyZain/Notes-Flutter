@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "624309619141",
+    "project_id": "notesapp-rusdy",
+    "storage_bucket": "notesapp-rusdy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624309619141:android:2e7dc86ee89ed0fae423ac",
+        "android_client_info": {
+          "package_name": "com.example.notesapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNUxlJW1Z5-BGh1ZNMHRCLD_1n2r3wDLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
