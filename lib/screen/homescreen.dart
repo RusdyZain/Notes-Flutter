@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notesapp/style/appstyle.dart';
+import 'package:notesapp/widgets/notes_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,25 +37,31 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(height: 20.0),
-            StreamBuilder<QuerySnapshot>(
-              stream:
-                  FirebaseFirestore.instance.collection("Notes").snapshots(),
-              builder: (context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasData) {
-                  return GridView(
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection("Notes").snapshots(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    return GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2));
-                }
-                return Text(
-                  "Ther's No Notees",
-                  style: GoogleFonts.nunito(color: Colors.white),
-                );
-              },
+                          crossAxisCount: 2),
+                      children: snapshot.data!.docs
+                          .map((note) => noteCard(() => {}, note))
+                          .toList(),
+                    );
+                  }
+                  return Text(
+                    "There's No Notees",
+                    style: GoogleFonts.nunito(color: Colors.white),
+                  );
+                },
+              ),
             ),
           ],
         ),
