@@ -22,25 +22,28 @@ class _NoteReaderScreenState extends State<NoteReaderScreen> {
         backgroundColor: AppStyle.cardsColor[color_id],
         elevation: 0.0,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            widget.doc["notes_title"],
-            style: AppStyle.mainTitle,
-          ),
-          SizedBox(height: 4.0),
-          Text(
-            widget.doc["creation_date"],
-            style: AppStyle.dateTitle,
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            widget.doc["note_content"],
-            style: AppStyle.mainContent,
-            overflow: TextOverflow.ellipsis,
-          )
-        ],
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.doc["notes_title"],
+              style: AppStyle.mainTitle,
+            ),
+            SizedBox(height: 4.0),
+            Text(
+              widget.doc["creation_date"],
+              style: AppStyle.dateTitle,
+            ),
+            SizedBox(height: 28.0),
+            Text(
+              widget.doc["note_content"],
+              style: AppStyle.mainContent,
+              overflow: TextOverflow.ellipsis,
+            )
+          ],
+        ),
       ),
     );
   }
