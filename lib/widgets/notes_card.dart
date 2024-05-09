@@ -25,11 +25,36 @@ Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
             style: AppStyle.dateTitle,
           ),
           SizedBox(height: 8.0),
-          Text(
-            doc["note_content"],
-            style: AppStyle.mainContent,
-            overflow: TextOverflow.ellipsis,
-          )
+          Expanded(
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final text = doc["note_content"];
+                final style = AppStyle.mainContent;
+                final textSpan = TextSpan(text: text, style: style);
+                final textPainter = TextPainter(
+                  text: textSpan,
+                  maxLines: 2,
+                  textDirection: TextDirection.ltr,
+                );
+                textPainter.layout(maxWidth: constraints.maxWidth);
+
+                if (textPainter.didExceedMaxLines) {
+                  int endPosition = textPainter
+                      .getPositionForOffset(
+                          Offset(constraints.maxWidth, textPainter.size.height))
+                      .offset;
+
+                  String displayedText = text.substring(0, endPosition);
+                  if (displayedText.length < text.length) {
+                    displayedText = displayedText.trimRight() + '...';
+                  }
+                  return Text(displayedText, style: style);
+                } else {
+                  return Text(text, style: style);
+                }
+              },
+            ),
+          ),
         ],
       ),
     ),

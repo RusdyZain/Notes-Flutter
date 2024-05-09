@@ -40,7 +40,6 @@ class _NoteReaderScreenState extends State<NoteReaderScreen> {
             Text(
               widget.doc["note_content"],
               style: AppStyle.mainContent,
-              overflow: TextOverflow.ellipsis,
             )
           ],
         ),

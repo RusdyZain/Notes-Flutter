@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppStyle {
-  static Color bgColor = Color(0xFFE2E2FF);
-  static Color mainColor = Color(0xFFF000633);
-  static Color accentColor = Color(0xFFF0065FF);
+  static Color bgColor = Color.fromRGBO(27, 27, 31, 1);
+  static Color mainColor = Color.fromRGBO(220, 220, 229, 1);
+  static Color accentColor = Color.fromRGBO(61, 80, 245, 1);
 
   static List<Color> cardsColor = [
     Colors.white,
