@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:notesapp/style/appstyle.dart';
+import 'package:intl/intl.dart';
 
 class NoteEditorScreen extends StatefulWidget {
   NoteEditorScreen({Key? key}) : super(key: key);
@@ -16,7 +17,7 @@ class NoteEditorScreen extends StatefulWidget {
 class _NoteEditorScreenState extends State<NoteEditorScreen> {
   int color_id = Random().nextInt(AppStyle.cardsColor.length);
 
-  String date = DateTime.now().toString();
+  String date = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now());
   TextEditingController _titleController = TextEditingController();
   TextEditingController _mainController = TextEditingController();
 
@@ -42,7 +43,10 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
               style: AppStyle.mainTitle,
             ),
             SizedBox(height: 8.0),
-            Text(date, style: AppStyle.dateTitle),
+            Text(
+              date,
+              style: AppStyle.dateTitle,
+            ),
             SizedBox(height: 8.0),
             TextField(
               controller: _mainController,
@@ -69,7 +73,10 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
           }).catchError(
               (error) => print("Failed to add new Note due to $error"));
         },
-        child: Icon(Icons.save),
+        child: Icon(
+          Icons.save,
+          color: AppStyle.mainColor,
+        ),
       ),
     );
   }
