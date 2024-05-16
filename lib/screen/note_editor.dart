@@ -53,7 +53,9 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
               keyboardType: TextInputType.multiline,
               maxLines: null,
               decoration: InputDecoration(
-                  border: InputBorder.none, hintText: "Note Content"),
+                border: InputBorder.none,
+                hintText: "Note Content",
+              ),
               style: AppStyle.mainTitle,
             ),
           ],
